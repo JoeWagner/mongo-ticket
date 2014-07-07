@@ -1,0 +1,24 @@
+{
+  "name": "mongo-ticket",
+  "description": "simple implementation of a single use \"ticket\", built with mongodb and node.js",
+  "author": "Joe Wagner",
+  "version": "0.0.1-pre",
+  "scripts": {
+    "test": "NODE_ENV=test mocha"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "mongodb": "~1.4.7"
+  },
+  "devDependencies": {
+    "mocha": "~1.12.0",
+    "should": "~3.3.0"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:JoeWagner/mongo-ticket.git"
+  }
+}
