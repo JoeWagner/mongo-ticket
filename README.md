@@ -14,8 +14,19 @@ simple implementation of a single use "ticket", built with mongodb and node.js
 
 ## Usage
 
+### initialization
+
+You must provide a [mongodb connection string](http://docs.mongodb.org/manual/reference/connection-string/) as the first argument when creating a new instance of **mongo-ticket**, then you may optionally provide an options object, and/or a callback
+
+### example
+
 ```javascript
-var mongoTicket = new MongoTicket('mongodb://localhost:27017/mongo-ticket', function (err, db) {
+var MongoTicket = require('mongo-ticket');
+var mt = new MongoTicket('mongodb://localhost:27017/mydatabase', {
+    autoConnect: true,
+    collection: 'mycollection',
+    stringify: true
+}, function (err, db) {
     if (err) // ...
 
     mongoTicket.set('qwerty', 'keyboard cat', function (err) {
@@ -26,14 +37,14 @@ var mongoTicket = new MongoTicket('mongodb://localhost:27017/mongo-ticket', func
 
 Later on...
 ```Javascript
-    mongoTicket.get('qwerty', function (err, val) {
-        if (err) // ....
-        console.log(val); // => 'keyboard cat'
-    })
+mongoTicket.get('qwerty', function (err, val) {
+    if (err) // ....
+    console.log(val); // => 'keyboard cat'
+});
 ```
 
 ## Methods
 
   - `connect(callback)` connects to the database with the provided mongodb uri.  This is called for you unless to specify `autoConnect: false` in the options
-  - `get(ticket, callback)` gets a ticket and removes it if found.  The arity of the callback is (error, ticketValue), where error is null unless something went wrong, and ticketValue is the (optionally parsed) value stored in the ticket.
+  - `get(ticket, callback)` gets a ticket and removes it if found.  The arity of the callback is (error, ticketValue), where error is null unless something went wrong, and ticketValue is the (optionally parsed) value stored in the ticket, or if no ticket was found it is undefined.
   - `set(ticket, ticketValue, callback)` sets ticket with the given value.  The callback is passed directly to the mongodb driver's insert method

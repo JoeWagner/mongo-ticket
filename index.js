@@ -25,7 +25,7 @@ MongoTicket.prototype.connect = function (done) {
         self.db = db;
         // setup unique index for the key, to ensure no duplicates are set
         db.collection(self.collection).ensureIndex({key: 1}, {unique: true}, function (err) {
-            done(err, db);
+            done && done(err, db);
         });
     });
 };

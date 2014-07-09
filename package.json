@@ -2,7 +2,7 @@
   "name": "mongo-ticket",
   "description": "simple implementation of a single use \"ticket\", built with mongodb and node.js",
   "author": "Joe Wagner",
-  "version": "0.0.1-pre",
+  "version": "0.0.1-pre1",
   "scripts": {
     "test": "NODE_ENV=test mocha"
   },

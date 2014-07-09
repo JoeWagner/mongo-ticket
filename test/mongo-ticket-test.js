@@ -21,6 +21,11 @@ describe('MongoTicket', function () {
         var mongoTicket = new MongoTicket('mongodb://localhost:27017/mongo-ticket', done);
     });
 
+    it('should not require a callback or options', function (done) {
+        var mongoTicket = new MongoTicket('mongodb://localhost:27017/mongo-ticket');
+        setTimeout(done, 1000);
+    });
+
     it('should allow setting tickets', function (done) {
         var mongoTicket = new MongoTicket('mongodb://localhost:27017/mongo-ticket', function (err, db) {
             if (err) return done(err);
