@@ -9,9 +9,8 @@ var MongoTicket = function MongoTicket(uri, options, done) {
     options || (options = {});
     this.uri = uri;
     this.collection = options.collection || 'mongoTicket'
-    // optionally supply a stringify function, or set to false to use the passed object directly
+    // optionally stringify ticket values, or set to false to send the passed object directly to mongo
     this.stringify = options.stringify || true;
-    this.parse = options.parse || JSON.parse;
     var autoConnect = (typeof options.autoConnect === 'undefined') ? true : options.autoConnect;
 
     if (autoConnect) this.connect(done);
@@ -66,7 +65,7 @@ MongoTicket.prototype.get = function (key, done) {
 MongoTicket.prototype._parse = function (val) {
     var ret;
     try {
-        ret = this.parse(val);
+        ret = JSON.parse(val);
     } catch (e) {
         ret = val;
     }
