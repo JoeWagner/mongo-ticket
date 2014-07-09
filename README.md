@@ -61,3 +61,7 @@ With the default options **mongo-ticket** uses the connection string you prvided
 ```
 The collection is given a unique index on `key`.  This ensures you don't have duplicate tickets, and as a side effect lookups are quicker.
 The `stringify` options lets you control if the value will be passed through JSON.stringify and JSON.parse before insert and after find.  These calls to JSON methods are wrapped in `try catch` blocks, so you can pass anything you want to set.  If you set `stringify: false` you can pass anything you want, and it goes straight to mongo.
+
+## TODOs
+
+  - Add a TTL option that creates a ttl index on a field that is automatically added when the ticket is created
